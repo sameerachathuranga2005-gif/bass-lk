@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="si" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>කාර්මික ශිල්පී ලියාපදිංචිය | Baas.lk Pro Registration | Sri Lanka's #1 Tradesman Network</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- FontAwesome 6 Icons CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Noto Sans Sinhala, and Noto Sans Tamil -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800;900&family=Noto+Sans+Tamil:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="log.png">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="bass.css">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Noto Sans Sinhala', 'Noto Sans Tamil', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brandBlue: {
+              50: '#eef6ff',
+              100: '#d9eaff',
+              200: '#bcd9ff',
+              300: '#8ec0ff',
+              400: '#599cff',
+              500: '#0066fe',
+              600: '#004fe6',
+              700: '#003eb8',
+              800: '#022e86',
+              900: '#021845',
+              950: '#010c24',
+            },
+            brandOrange: {
+              300: '#fde047',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+            },
+            darkSurface: {
+              800: '#0b192e',
+              900: '#071223',
+              950: '#030a16',
+            }
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="text-slate-800 dark:text-slate-100 font-sans selection:bg-brandOrange-500 selection:text-white">
+
+  <!-- Ambient Light & Grid Background -->
+  <div class="ambient-glow"></div>
+  <div class="bg-grid-mesh"></div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="fixed top-5 right-5 z-[300] flex flex-col gap-2.5 pointer-events-none max-w-[90vw]"></div>
+
+  <!-- Confetti Container -->
+  <div id="confetti-container" class="fixed inset-0 pointer-events-none z-[250] overflow-hidden"></div>
+
+  <!-- ================================================================= -->
+  <!-- TOP NAVIGATION BAR -->
+  <!-- ================================================================= -->
+  <header class="sticky top-0 z-50 glass-panel border-b border-slate-200/80 dark:border-slate-800/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
+
+      <!-- Logo & Pro Badge -->
+      <div class="flex items-center gap-3">
+        <a href="index1.html" class="flex items-center gap-2 group">
+          <img src="log.png" alt="Baas.lk Logo" class="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105">
+          <div class="flex flex-col">
+            <span class="text-lg sm:text-xl font-black text-slate-900 dark:text-white tracking-tight leading-none">
+              Baas<span class="text-brandOrange-500">.lk</span>
+            </span>
+            <span class="text-[9px] sm:text-[10px] font-black text-brandOrange-500 uppercase tracking-widest flex items-center gap-1 mt-0.5">
+              <i class="fa-solid fa-helmet-safety text-[9px]"></i> PRO ONBOARDING
+            </span>
+          </div>
+        </a>
+
+        <!-- Return to Home Link -->
+        <a href="index1.html"
+          class="hidden md:inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-brandBlue-600 dark:hover:text-amber-400 ml-4 px-3 py-1.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <i class="fa-solid fa-arrow-left text-[11px]"></i>
+          <span>මුල් පිටුවට (Home)</span>
+        </a>
+      </div>
+
+      <!-- Controls: Languages, Dark Mode & Sign In -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Language Switcher -->
+        <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-full border border-slate-200 dark:border-slate-700 text-xs">
+          <button type="button" id="btn-lang-si" onclick="setLanguage('si')"
+            class="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-black bg-brandOrange-500 text-slate-950 shadow-sm transition">
+            සිං
+          </button>
+          <button type="button" id="btn-lang-en" onclick="setLanguage('en')"
+            class="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold text-slate-400 hover:text-white transition">
+            EN
+          </button>
+          <button type="button" id="btn-lang-ta" onclick="setLanguage('ta')"
+            class="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold text-slate-400 hover:text-white transition">
+            தமி
+          </button>
+        </div>
+
+        <!-- Dark / Light Mode Toggle -->
+        <button type="button" onclick="toggleTheme()"
+          class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-amber-400 transition border border-slate-200 dark:border-slate-700"
+          title="Toggle Theme">
+          <i id="theme-icon" class="fa-solid fa-moon text-sm"></i>
+        </button>
+
+        <!-- Sign In Button -->
+        <a href="index1.html?login=1"
+          class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
+          <i class="fa-solid fa-arrow-right-to-bracket text-brandOrange-500"></i>
+          <span>ඇතුළු වන්න (Sign In)</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================================================================= -->
+  <!-- HERO BANNER FOR CRAFTSMEN / TRADESMEN -->
+  <!-- ================================================================= -->
+  <section class="relative z-10 pt-6 sm:pt-10 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="glass-panel p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] border border-amber-500/20 shadow-xl relative overflow-hidden bg-gradient-to-r from-amber-500/10 via-brandBlue-600/5 to-transparent">
+        
+        <!-- Decorative Background Blob -->
+        <div class="absolute -right-16 -top-16 w-64 h-64 bg-amber-400/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+          <div class="space-y-3 text-center md:text-left max-w-2xl">
+            <span class="inline-flex items-center gap-2 bg-brandOrange-500/20 text-brandOrange-600 dark:text-amber-400 px-3.5 py-1 rounded-full text-xs font-black border border-brandOrange-500/30">
+              <i class="fa-solid fa-certificate text-brandOrange-500"></i> ලංකාවේ අංක 1 කාර්මික ශිල්පී ජාලය
+            </span>
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+              ඔබේ දක්ෂතාවයෙන් ඉහළ ආදායමක් උපයන්න!
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-medium leading-relaxed">
+              දිනපතා ඔබේම නගරයේ පාරිභෝගිකයින්ගෙන් සෘජු ඇමතුම් ලබාගන්න. අතරමැදි කොමිස් නැත. සේවා ගාස්තු 100% ක්ම ඔබ සතුයි. අදම නොමිලේ ලියාපදිංචි වී නිල <strong>Verified Pro</strong> ලාංඡනය හිමිකරගන්න.
+            </p>
+
+            <!-- Value Props -->
+            <div class="flex flex-wrap justify-center md:justify-start gap-3 sm:gap-4 pt-2 text-[11px] sm:text-xs font-bold text-slate-700 dark:text-slate-300">
+              <span class="flex items-center gap-1.5 bg-white/70 dark:bg-slate-800/70 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700 shadow-xs">
+                <i class="fa-solid fa-coins text-amber-500"></i> 0% කොමිස් (No Hidden Fees)
+              </span>
+              <span class="flex items-center gap-1.5 bg-white/70 dark:bg-slate-800/70 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700 shadow-xs">
+                <i class="fa-solid fa-phone text-emerald-500"></i> සෘජු පාරිභෝගික ඇමතුම්
+              </span>
+              <span class="flex items-center gap-1.5 bg-white/70 dark:bg-slate-800/70 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700 shadow-xs">
+                <i class="fa-solid fa-shield-halved text-brandBlue-500"></i> නිල Baas ID කාඩ්පත
+              </span>
+            </div>
+          </div>
+
+          <!-- Quick Stats Badge -->
+          <div class="shrink-0 flex items-center gap-3 bg-white/80 dark:bg-slate-900/80 p-4 sm:p-5 rounded-3xl border border-amber-300/40 dark:border-slate-700 shadow-lg text-center">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-brandOrange-500 flex items-center justify-center text-2xl font-black">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <div class="text-left">
+              <div class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white leading-tight">1,480+</div>
+              <p class="text-[11px] font-bold text-slate-500 dark:text-slate-400">ලියාපදිංචි දක්ෂ බාස්ලා</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- WIZARD STEP INDICATOR HEADER -->
+  <!-- ================================================================= -->
+  <section id="wizard-steps-header" class="relative z-10 py-4 sm:py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="glass-panel p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-slate-200/80 dark:border-slate-800/80">
+        
+        <!-- Progress Bar Background -->
+        <div class="relative flex items-center justify-between">
+          <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-slate-200 dark:bg-slate-800 rounded-full z-0">
+            <div id="wizard-progress-bar" class="h-full bg-gradient-to-r from-brandOrange-500 to-amber-400 rounded-full transition-all duration-300 w-0"></div>
+          </div>
+
+          <!-- Step 1 -->
+          <div id="step-item-1" class="step-item active relative z-10 flex flex-col items-center gap-1.5 cursor-pointer group" onclick="goToStep(1)">
+            <div class="step-bubble w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xs sm:text-sm font-black transition">
+              <i class="fa-regular fa-user"></i>
+            </div>
+            <span id="step-label-1" class="step-title text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 text-center">මූලික තොරතුරු</span>
+          </div>
+
+          <!-- Step 2 -->
+          <div id="step-item-2" class="step-item relative z-10 flex flex-col items-center gap-1.5 cursor-pointer group" onclick="goToStep(2)">
+            <div class="step-bubble w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xs sm:text-sm font-black transition">
+              <i class="fa-solid fa-wrench"></i>
+            </div>
+            <span id="step-label-2" class="step-title text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 text-center">වෘත්තිය & කුසලතා</span>
+          </div>
+
+          <!-- Step 3 -->
+          <div id="step-item-3" class="step-item relative z-10 flex flex-col items-center gap-1.5 cursor-pointer group" onclick="goToStep(3)">
+            <div class="step-bubble w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xs sm:text-sm font-black transition">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <span id="step-label-3" class="step-title text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 text-center">සේවා ප්‍රදේශය</span>
+          </div>
+
+          <!-- Step 4 -->
+          <div id="step-item-4" class="step-item relative z-10 flex flex-col items-center gap-1.5 cursor-pointer group" onclick="goToStep(4)">
+            <div class="step-bubble w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xs sm:text-sm font-black transition">
+              <i class="fa-solid fa-id-card"></i>
+            </div>
+            <span id="step-label-4" class="step-title text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 text-center">සත්‍යාපනය</span>
+          </div>
+
+          <!-- Step 5 -->
+          <div id="step-item-5" class="step-item relative z-10 flex flex-col items-center gap-1.5 cursor-pointer group" onclick="goToStep(5)">
+            <div class="step-bubble w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xs sm:text-sm font-black transition">
+              <i class="fa-solid fa-shield-check"></i>
+            </div>
+            <span id="step-label-5" class="step-title text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 text-center">තහවුරු කිරීම</span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================= -->
+  <!-- MAIN REGISTRATION SECTION (FORM + LIVE PROFILE PREVIEW) -->
+  <!-- ================================================================= -->
+  <main class="relative z-10 py-4 sm:py-6 pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+
+      <!-- CELEBRATION SUCCESS STATE (HIDDEN BY DEFAULT) -->
+      <div id="celebration-panel" class="hidden flex-col items-center justify-center text-center p-8 sm:p-14 glass-panel rounded-[2.5rem] border-2 border-emerald-500/40 shadow-2xl space-y-6 max-w-2xl mx-auto">
+        <div class="w-20 h-20 rounded-full bg-emerald-500/20 text-emerald-500 flex items-center justify-center text-4xl shadow-inner border-2 border-emerald-500 animate-bounce">
+          <i class="fa-solid fa-check"></i>
+        </div>
+
+        <div class="space-y-2">
+          <span class="inline-flex items-center gap-1.5 bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 text-xs font-black px-3.5 py-1 rounded-full border border-emerald-400">
+            <i class="fa-solid fa-circle-check"></i> REGISTRATION COMPLETED
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">සුබ පැතුම්! ඔබ දැන් Baas.lk සාමාජිකයෙකි!</h2>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto">
+            ඔබගේ කාර්මික ශිල්පී ගිණුම සාර්ථකව නිර්මාණය කරන ලදී. පාරිභෝගිකයින්ට දැන් ඔබව සෘජුවම සම්බන්ධ කරගත හැක.
+          </p>
+        </div>
+
+        <!-- Generated Pro Digital Card -->
+        <div class="w-full max-w-sm glass-card-preview p-5 rounded-3xl text-left border-2 border-brandOrange-500 shadow-2xl relative overflow-hidden">
+          <div class="flex items-center justify-between pb-3 border-b border-amber-300/40 dark:border-slate-700">
+            <div class="flex items-center gap-2">
+              <img src="log.png" alt="Baas.lk" class="h-6 w-auto">
+              <span class="text-xs font-black tracking-tight text-slate-900 dark:text-white">Baas<span class="text-brandOrange-500">.lk</span> PRO ID</span>
+            </div>
+            <span id="celebration-pro-id" class="text-[11px] font-mono font-black text-brandOrange-500 bg-amber-500/10 px-2 py-0.5 rounded-lg border border-amber-400/30">BAAS-PRO-8492</span>
+          </div>
+
+          <div class="flex items-center gap-3.5 py-4">
+            <img id="celebration-pro-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200"
+              class="w-16 h-16 rounded-2xl object-cover border-2 border-brandOrange-500 shadow-md">
+            <div>
+              <h4 id="celebration-pro-name" class="text-base font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                කස්සප බණ්ඩාර
+                <i class="fa-solid fa-circle-check text-brandBlue-500 text-xs"></i>
+              </h4>
+              <p id="celebration-pro-trade" class="text-xs font-bold text-brandOrange-500 mt-0.5">විදුලි කාර්මික ශිල්පී</p>
+              <p id="celebration-pro-loc" class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+                <i class="fa-solid fa-location-dot text-brandOrange-500"></i> මහරගම, COLOMBO
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-amber-50 dark:bg-slate-800/80 p-2.5 rounded-2xl text-center text-[11px] font-bold text-slate-700 dark:text-slate-300 border border-amber-200 dark:border-slate-700">
+            🟢 සේවාව සඳහා පාරිභෝගිකයින්ට සූදානම් (Active & Online)
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center gap-3 w-full max-w-sm pt-2">
+          <a href="index1.html" class="w-full btn-3d-orange py-3.5 rounded-2xl text-xs sm:text-sm font-black flex items-center justify-center gap-2">
+            <span>ප්‍රධාන පිටුවට යන්න (Home)</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- MAIN 2-COLUMN LAYOUT -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- ============================================================= -->
+        <!-- LEFT COLUMN: MULTI-STEP WIZARD FORM (70% WIDTH) -->
+        <!-- ============================================================= -->
+        <div id="main-registration-card" class="lg:col-span-8 glass-panel p-5 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-slate-200/80 dark:border-slate-800/80 shadow-2xl">
+
+          <!-- ----------------------------------------------------------- -->
+          <!-- STEP 1: PERSONAL INFORMATION & PHOTO -->
+          <!-- ----------------------------------------------------------- -->
+          <div id="step-panel-1" class="space-y-6">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+                  <i class="fa-solid fa-user-circle text-brandOrange-500"></i>
+                  <span>මූලික තොරතුරු සහ ඡායාරූපය</span>
+                </h3>
+                <span class="text-xs font-black text-brandOrange-500 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-400/30">Step 1 of 5</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">ඔබගේ නම, දුරකථන අංකය සහ පැහැදිලි ඡායාරූපයක් ඇතුළත් කරන්න.</p>
+            </div>
+
+            <!-- Profile Photo Upload & Preset Avatars -->
+            <div class="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-3.5">
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300">
+                පැතිකඩ ඡායාරූපය (Profile Photo) <span class="text-brandOrange-500">*</span>
+              </label>
+
+              <div class="flex flex-col sm:flex-row items-center gap-4">
+                <!-- Photo Preview Box -->
+                <div class="relative shrink-0">
+                  <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl border-2 border-brandOrange-500/50 bg-white dark:bg-slate-800 overflow-hidden flex items-center justify-center shadow-md">
+                    <img id="photo-preview-img" src="" class="w-full h-full object-cover hidden" alt="Uploaded Preview">
+                    <div id="photo-preview-placeholder" class="flex flex-col items-center justify-center text-slate-400 gap-1 text-center p-2">
+                      <i class="fa-regular fa-image text-2xl text-brandOrange-500"></i>
+                      <span class="text-[9px] font-bold">ඡායාරූපය</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Drag-drop & Upload Trigger -->
+                <div class="flex-1 w-full">
+                  <label id="photo-dropzone" for="baas-photo-input"
+                    class="upload-dropzone p-4 rounded-2xl flex flex-col items-center justify-center text-center cursor-pointer bg-white/70 dark:bg-slate-800/40">
+                    <i class="fa-solid fa-cloud-arrow-up text-brandOrange-500 text-xl mb-1"></i>
+                    <span class="text-xs font-black text-slate-800 dark:text-slate-200">ඡායාරූපයක් තෝරන්න (Upload Photo)</span>
+                    <span class="text-[10px] text-slate-400 mt-0.5">JPG, PNG (උපරිම 5MB)</span>
+                    <input type="file" id="baas-photo-input" accept="image/*" class="sr-only" onchange="handlePhotoUpload(this)">
+                  </label>
+
+                  <!-- Preset Avatars -->
+                  <div class="flex items-center gap-2 mt-2 pt-2 border-t border-slate-200 dark:border-slate-800">
+                    <span class="text-[10px] font-bold text-slate-400">නැතහොත් Avatar එකක් තෝරන්න:</span>
+                    <div class="flex gap-1.5">
+                      <img onclick="choosePresetAvatar('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200')"
+                        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200"
+                        class="w-7 h-7 rounded-lg object-cover cursor-pointer hover:scale-110 transition border border-amber-300" title="Avatar 1">
+                      <img onclick="choosePresetAvatar('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200')"
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200"
+                        class="w-7 h-7 rounded-lg object-cover cursor-pointer hover:scale-110 transition border border-amber-300" title="Avatar 2">
+                      <img onclick="choosePresetAvatar('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200')"
+                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200"
+                        class="w-7 h-7 rounded-lg object-cover cursor-pointer hover:scale-110 transition border border-amber-300" title="Avatar 3">
+                      <img onclick="choosePresetAvatar('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200')"
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"
+                        class="w-7 h-7 rounded-lg object-cover cursor-pointer hover:scale-110 transition border border-amber-300" title="Avatar 4">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Name Fields -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  සම්පූර්ණ නම (Full Name) <span class="text-brandOrange-500">*</span>
+                </label>
+                <div class="relative flex items-center">
+                  <i class="fa-solid fa-user absolute left-3.5 text-xs text-brandOrange-500"></i>
+                  <input type="text" id="baas-full-name" placeholder="උදා: කස්සප බණ්ඩාර"
+                    class="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-bold focus:outline-none focus:border-brandOrange-500 transition" required>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  ප්‍රසිද්ධ නම / බාස් නම (Working Nickname)
+                </label>
+                <div class="relative flex items-center">
+                  <i class="fa-solid fa-tag absolute left-3.5 text-xs text-brandOrange-500"></i>
+                  <input type="text" id="baas-display-name" placeholder="උදා: බණ්ඩාර බාස් / Bandara Electrical"
+                    class="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-bold focus:outline-none focus:border-brandOrange-500 transition">
+                </div>
+              </div>
+            </div>
+
+            <!-- Phone & WhatsApp Fields -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  ජංගම දුරකථන අංකය (Mobile) <span class="text-brandOrange-500">*</span>
+                </label>
+                <div class="relative flex items-center">
+                  <span class="absolute left-3.5 text-xs font-black text-slate-500 dark:text-slate-400 flex items-center gap-1 border-r border-slate-300 dark:border-slate-700 pr-2">
+                    🇱🇰 +94
+                  </span>
+                  <input type="tel" id="baas-phone" placeholder="77 123 4567"
+                    class="w-full pl-24 pr-4 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-bold focus:outline-none focus:border-brandOrange-500 transition" required>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between mb-1">
+                  <label class="text-xs font-bold text-slate-700 dark:text-slate-300">WhatsApp අංකය</label>
+                  <label class="flex items-center gap-1.5 cursor-pointer text-[10px] font-bold text-brandOrange-500">
+                    <input type="checkbox" id="baas-wa-same" class="rounded text-brandOrange-500 focus:ring-0">
+                    <span>දුරකථන අංකයමයි</span>
+                  </label>
+                </div>
+                <div class="relative flex items-center">
+                  <span class="absolute left-3.5 text-xs font-black text-emerald-500 flex items-center gap-1 border-r border-slate-300 dark:border-slate-700 pr-2">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> +94
+                  </span>
+                  <input type="tel" id="baas-whatsapp" placeholder="77 123 4567"
+                    class="w-full pl-24 pr-4 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-bold focus:outline-none focus:border-brandOrange-500 transition">
+                </div>
+              </div>
+            </div>
+
+            <!-- NIC & Password -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  ජාතික හැඳුනුම්පත් අංකය (NIC No)
+                </label>
+                <div class="relative flex items-center">
+                  <i class="fa-regular fa-id-badge absolute left-3.5 text-xs text-brandOrange-500"></i>
+                  <input type="text" id="baas-nic" placeholder="උදා: 198512345678 හෝ 851234567V"
+                    class="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-bold focus:outline-none focus:border-brandOrange-500 transition">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  නව මුරපදය (Create Password) <span class="text-brandOrange-500">*</span>
+                </label>
+                <div class="relative flex items-center">
+                  <i class="fa-solid fa-lock absolute left-3.5 text-xs text-brandOrange-500"></i>
+                  <input type="password" id="baas-password" placeholder="අවම අකුරු 6ක්..."
+                    class="w-full pl-10 pr-10 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-bold focus:outline-none focus:border-brandOrange-500 transition" required>
+                  <button type="button" onclick="togglePassword('baas-password', 'pw-eye-1')" class="absolute right-3.5 text-slate-400 hover:text-white">
+                    <i id="pw-eye-1" class="fa-regular fa-eye text-sm"></i>
+                  </button>
+                </div>
+                <div class="strength-bar mt-1.5">
+                  <div id="password-strength-fill" class="strength-bar-fill"></div>
+                </div>
+                <span id="password-strength-label" class="text-[10px] text-slate-400 font-bold block mt-0.5">අවම අකුරු 6ක් යොදන්න</span>
+              </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                මුරපදය තහවුරු කරන්න (Confirm Password) <span class="text-brandOrange-500">*</span>
+              </label>
+              <div class="relative flex items-center">
+                <i class="fa-solid fa-lock-open absolute left-3.5 text-xs text-brandOrange-500"></i>
+                <input type="password" id="baas-confirm-password" placeholder="මුරපදය නැවත ඇතුළත් කරන්න..."
+                  class="w-full pl-10 pr-10 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-bold focus:outline-none focus:border-brandOrange-500 transition" required>
+                <button type="button" onclick="togglePassword('baas-confirm-password', 'pw-eye-2')" class="absolute right-3.5 text-slate-400 hover:text-white">
+                  <i id="pw-eye-2" class="fa-regular fa-eye text-sm"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 1 Actions -->
+            <div class="flex justify-end pt-4 border-t border-slate-200 dark:border-slate-800">
+              <button type="button" onclick="nextStep()"
+                class="btn-3d-orange px-8 py-3.5 rounded-2xl text-xs sm:text-sm font-black flex items-center gap-2">
+                <span>ඊළඟ පියවර: වෘත්තිය සහ කුසලතා</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- ----------------------------------------------------------- -->
+          <!-- STEP 2: TRADE & SKILLS -->
+          <!-- ----------------------------------------------------------- -->
+          <div id="step-panel-2" class="hidden space-y-6">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+                  <i class="fa-solid fa-toolbox text-brandOrange-500"></i>
+                  <span>වෘත්තීය ක්ෂේත්‍රය සහ පළපුරුද්ද</span>
+                </h3>
+                <span class="text-xs font-black text-brandOrange-500 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-400/30">Step 2 of 5</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">ඔබ ප්‍රවීණ ප්‍රධාන සේවා ක්ෂේත්‍රය සහ අදාළ විශේෂ කුසලතා තෝරන්න.</p>
+            </div>
+
+            <!-- Primary Trade Selection Cards -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2.5">
+                ප්‍රධාන සේවා ක්ෂේත්‍රය (Primary Trade) <span class="text-brandOrange-500">*</span>
+              </label>
+              <div id="trade-cards-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                <!-- Trade cards rendered by bass.js -->
+              </div>
+            </div>
+
+            <!-- Dynamic Sub-skills Generation -->
+            <div class="p-4 sm:p-5 rounded-2xl bg-amber-500/5 dark:bg-amber-950/20 border border-amber-500/20 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <label class="text-xs font-bold text-slate-900 dark:text-amber-200 flex items-center gap-1.5">
+                  <i class="fa-solid fa-wand-magic-sparkles text-brandOrange-500"></i>
+                  <span>ඔබට කළ හැකි විශේෂ සේවාවන් (Specialized Sub-skills):</span>
+                </label>
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 font-bold">බහුවරණ තෝරන්න</span>
+              </div>
+              <div id="trade-subskills-container" class="flex flex-wrap gap-2 pt-1">
+                <!-- Subskills checkboxes rendered by bass.js -->
+              </div>
+            </div>
+
+            <!-- Experience & Qualifications -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  පළපුරුද්ද (Experience)
+                </label>
+                <select id="baas-experience"
+                  class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-bold focus:outline-none focus:border-brandOrange-500 cursor-pointer">
+                  <option value="1-2">වසර 1 - 2 (1-2 Years)</option>
+                  <option value="3-5">වසර 3 - 5 (3-5 Years)</option>
+                  <option value="5-10" selected>වසර 5 - 10 (5-10 Years)</option>
+                  <option value="10+">වසර 10+ (10+ Years)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  සුදුසුකම් / NVQ මට්ටම
+                </label>
+                <select id="baas-qualification"
+                  class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-bold focus:outline-none focus:border-brandOrange-500 cursor-pointer">
+                  <option value="nvq3">NVQ Level 3 හෝ 4</option>
+                  <option value="naita">NAITA / German Tech / CGTTI</option>
+                  <option value="vocational">කාර්මික විද්‍යාල සහතික</option>
+                  <option value="practical" selected>ප්‍රායෝගික පළපුරුද්ද (Practical)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  ගාස්තු අය කරන ආකාරය
+                </label>
+                <div class="grid grid-cols-2 gap-2">
+                  <select id="baas-rate-type"
+                    class="px-2 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold focus:outline-none focus:border-brandOrange-500 cursor-pointer">
+                    <option value="daily" selected>දිනකට</option>
+                    <option value="hourly">පැයකට</option>
+                    <option value="job">වැඩේට</option>
+                  </select>
+                  <input type="number" id="baas-rate-amount" placeholder="රු. 3500"
+                    class="px-3 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold focus:outline-none focus:border-brandOrange-500">
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2 Actions -->
+            <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+              <button type="button" onclick="prevStep()"
+                class="px-5 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-xs transition flex items-center gap-1.5">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>ආපසු</span>
+              </button>
+              <button type="button" onclick="nextStep()"
+                class="btn-3d-orange px-8 py-3.5 rounded-2xl text-xs sm:text-sm font-black flex items-center gap-2">
+                <span>ඊළඟ පියවර: සේවා ප්‍රදේශය</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- ----------------------------------------------------------- -->
+          <!-- STEP 3: SERVICE AREA & COVERAGE -->
+          <!-- ----------------------------------------------------------- -->
+          <div id="step-panel-3" class="hidden space-y-6">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+                  <i class="fa-solid fa-map-location-dot text-brandOrange-500"></i>
+                  <span>සේවා සපයන ප්‍රදේශ (Service Coverage Area)</span>
+                </h3>
+                <span class="text-xs font-black text-brandOrange-500 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-400/30">Step 3 of 5</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">ඔබට ගොස් වැඩ කළ හැකි දිස්ත්‍රික්ක සහ නගර තෝරන්න.</p>
+            </div>
+
+            <!-- Base District & Town -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  මූලික දිස්ත්‍රික්කය (Base District) <span class="text-brandOrange-500">*</span>
+                </label>
+                <div class="relative">
+                  <select id="baas-district" onchange="onDistrictChanged(this.value)"
+                    class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-bold focus:outline-none focus:border-brandOrange-500 transition cursor-pointer appearance-none pr-10">
+                    <!-- Populated dynamically with all 25 districts -->
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-500">
+                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  මූලික නගරය (Base Town) <span class="text-brandOrange-500">*</span>
+                </label>
+                <div class="relative">
+                  <select id="baas-base-town" onchange="updateLivePreview()"
+                    class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-bold focus:outline-none focus:border-brandOrange-500 transition cursor-pointer appearance-none pr-10">
+                    <option value="" disabled selected>පළමුව දිස්ත්‍රික්කය තෝරන්න</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-500">
+                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Full District Option Toggle -->
+            <label class="flex items-center gap-3 p-3.5 rounded-2xl bg-amber-500/10 dark:bg-amber-950/30 border border-amber-500/30 cursor-pointer hover:border-brandOrange-400 transition">
+              <input type="checkbox" id="baas-all-district" onchange="toggleAllDistrictCoverage(this.checked)" class="w-5 h-5 text-brandOrange-500 rounded border-slate-300 focus:ring-0 cursor-pointer">
+              <div>
+                <span class="text-xs sm:text-sm font-black text-slate-900 dark:text-white block">
+                  🚐 තෝරාගත් දිස්ත්‍රික්කය පුරාම ඕනෑම තැනක වැඩ කළ හැක (Cover Entire District)
+                </span>
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">මෙය සක්‍රිය කළ විට එම දිස්ත්‍රික්කයේ සියලු පාරිභෝගික ඇමතුම් ඔබට ලැබේ.</span>
+              </div>
+            </label>
+
+            <!-- Towns Selector (Interactive Chips) -->
+            <div class="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-3">
+              <div class="flex items-center justify-between">
+                <label class="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                  <i class="fa-solid fa-city text-brandOrange-500"></i>
+                  <span>වැඩ කිරීමට කැමති නගර ක්ලික් කරන්න:</span>
+                </label>
+                <span id="town-chips-count" class="text-xs font-bold text-brandOrange-500"></span>
+              </div>
+
+              <!-- Chips Container -->
+              <div id="work-town-chips-container" class="flex flex-wrap gap-2 max-h-36 overflow-y-auto custom-scroll p-2 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+                <!-- Dynamically populated -->
+              </div>
+
+              <!-- Custom Town Adder -->
+              <div class="flex gap-2 pt-1">
+                <div class="relative flex-1">
+                  <i class="fa-solid fa-map-pin absolute left-3.5 top-3.5 text-xs text-brandOrange-500"></i>
+                  <input type="text" id="custom-work-input" placeholder="වෙනත් නගරයක් ඇතුළත් කරන්න (Type other town)..."
+                    class="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-bold focus:outline-none focus:border-brandOrange-500"
+                    onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomWorkLocation();}">
+                </div>
+                <button type="button" onclick="addCustomWorkLocation()"
+                  class="px-4 py-2.5 bg-brandOrange-500 hover:bg-brandOrange-600 text-slate-950 font-black rounded-xl text-xs flex items-center gap-1 transition">
+                  <i class="fa-solid fa-plus text-[10px]"></i>
+                  <span>එක්කරන්න</span>
+                </button>
+              </div>
+
+              <!-- Selected Active Towns Badges -->
+              <div class="pt-2">
+                <div class="flex items-center justify-between mb-1.5 text-[11px] font-bold text-slate-500">
+                  <span>තෝරාගත් නගර (<span id="selected-towns-count">0</span>):</span>
+                  <button type="button" id="btn-clear-towns" onclick="clearAllWorkTowns()" class="text-rose-500 hover:underline hidden font-bold">සියල්ල ඉවත් කරන්න</button>
+                </div>
+                <div id="selected-work-badges" class="flex flex-wrap gap-1.5 min-h-[38px] p-2 bg-amber-50/50 dark:bg-amber-950/30 rounded-xl border border-dashed border-amber-300 dark:border-amber-800/60 items-center">
+                  <span class="text-xs text-slate-400 italic">කිසිදු නගරයක් තෝරා නැත.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Transport & Emergency 24/7 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                  ගමන් පහසුකම් (Transport Method)
+                </label>
+                <select id="baas-transport"
+                  class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-bold focus:outline-none focus:border-brandOrange-500 cursor-pointer">
+                  <option value="bike">යතුරුපැදිය (Motorbike)</option>
+                  <option value="threewheel">ත්‍රිරෝද රථය (Three-wheeler)</option>
+                  <option value="truck">කුඩා ලොරි / වෑන් (Van/Truck)</option>
+                  <option value="public">පොදු ප්‍රවාහනය (Public Transport)</option>
+                </select>
+              </div>
+
+              <div class="flex items-center pt-2 sm:pt-6">
+                <label class="flex items-center gap-3 p-3 rounded-2xl bg-emerald-500/10 dark:bg-emerald-950/20 border border-emerald-500/30 cursor-pointer w-full">
+                  <input type="checkbox" id="baas-emergency-toggle" onchange="updateLivePreview()" class="w-5 h-5 text-emerald-500 rounded border-slate-300 focus:ring-0 cursor-pointer">
+                  <div>
+                    <span class="text-xs font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                      24/7 හදිසි සේවා සූදානම (Emergency Service)
+                    </span>
+                    <span class="text-[10px] text-slate-500 dark:text-slate-400">හදිසි අවශ්‍යතා සඳහා පාරිභෝගිකයින්ට ඉහළින් පෙන්වයි.</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Step 3 Actions -->
+            <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+              <button type="button" onclick="prevStep()"
+                class="px-5 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-xs transition flex items-center gap-1.5">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>ආපසු</span>
+              </button>
+              <button type="button" onclick="nextStep()"
+                class="btn-3d-orange px-8 py-3.5 rounded-2xl text-xs sm:text-sm font-black flex items-center gap-2">
+                <span>ඊළඟ පියවර: සත්‍යාපනය & හැඳුනුම්පත</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- ----------------------------------------------------------- -->
+          <!-- STEP 4: IDENTITY VERIFICATION & BIO -->
+          <!-- ----------------------------------------------------------- -->
+          <div id="step-panel-4" class="hidden space-y-6">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+                  <i class="fa-solid fa-shield-halved text-brandOrange-500"></i>
+                  <span>හැඳුනුම්පත සහ සත්‍යාපනය (Identity & Trust)</span>
+                </h3>
+                <span class="text-xs font-black text-brandOrange-500 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-400/30">Step 4 of 5</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Verified Pro ලාංඡනය ලබාගැනීම සඳහා ඔබගේ හැඳුනුම්පත උඩුගත කරන්න (විකල්ප/Optional).</p>
+            </div>
+
+            <!-- Fast-Track Verified Badge Banner -->
+            <div class="p-4 rounded-2xl bg-brandBlue-500/10 dark:bg-brandBlue-950/40 border border-brandBlue-500/30 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-brandBlue-500 text-white flex items-center justify-center text-lg shrink-0">
+                <i class="fa-solid fa-award"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-black text-slate-900 dark:text-white">Verified Pro ආරක්ෂිත ලාංඡනය</h4>
+                <p class="text-[11px] text-slate-600 dark:text-slate-300 font-medium">හැඳුනුම්පත හෝ NVQ සහතික උඩුගත කරන බාස්ලා හට 3 ගුණයක වැඩි පාරිභෝගික ඇමතුම් ලැබේ.</p>
+              </div>
+            </div>
+
+            <!-- NIC Front & Back Upload -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Front -->
+              <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-2">
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300">
+                  හැඳුනුම්පතේ ඉදිරිපස (NIC Front)
+                </label>
+                <label for="nic-front-input" class="upload-dropzone p-4 rounded-xl flex flex-col items-center justify-center text-center cursor-pointer bg-white/70 dark:bg-slate-800/40 min-h-[110px]">
+                  <img id="nic-front-preview" src="" class="max-h-20 rounded-lg hidden mb-1 object-cover" alt="NIC Front">
+                  <i class="fa-solid fa-id-card text-brandOrange-500 text-xl mb-1"></i>
+                  <span class="text-xs font-bold text-slate-700 dark:text-slate-300">ඉදිරිපස ඡායාරූපය තෝරන්න</span>
+                  <input type="file" id="nic-front-input" accept="image/*" class="sr-only" onchange="handleNicUpload(this, 'front')">
+                </label>
+              </div>
+
+              <!-- Back -->
+              <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 space-y-2">
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300">
+                  හැඳුනුම්පතේ පසුපස (NIC Back)
+                </label>
+                <label for="nic-back-input" class="upload-dropzone p-4 rounded-xl flex flex-col items-center justify-center text-center cursor-pointer bg-white/70 dark:bg-slate-800/40 min-h-[110px]">
+                  <img id="nic-back-preview" src="" class="max-h-20 rounded-lg hidden mb-1 object-cover" alt="NIC Back">
+                  <i class="fa-solid fa-id-card-clip text-brandOrange-500 text-xl mb-1"></i>
+                  <span class="text-xs font-bold text-slate-700 dark:text-slate-300">පසුපස ඡායාරූපය තෝරන්න</span>
+                  <input type="file" id="nic-back-input" accept="image/*" class="sr-only" onchange="handleNicUpload(this, 'back')">
+                </label>
+              </div>
+            </div>
+
+            <!-- About / Bio -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                ඔබ ගැන කෙටි හැඳින්වීමක් (Short Bio / Experience Summary)
+              </label>
+              <textarea id="baas-bio" rows="3" placeholder="උදා: මම වසර 8ක් පුරා නිවාස සහ කාර්යාල විදුලි කාර්මික කටයුතු පිළිබඳ ප්‍රවීණතාවය ලත් අයෙකි. විශ්වාසනීය සහ කඩිනම් සේවයක් සාධාරණ මිලකට ලබා දෙමි..."
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-medium focus:outline-none focus:border-brandOrange-500 transition"></textarea>
+            </div>
+
+            <!-- Terms & Code of Conduct Checkbox -->
+            <label class="flex items-start gap-3 cursor-pointer p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+              <input type="checkbox" id="baas-terms" checked class="w-4 h-4 text-brandOrange-500 rounded border-slate-300 focus:ring-0 mt-0.5 cursor-pointer">
+              <span class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                මම Baas.lk කාර්මික ශිල්පීන්ගේ සේවා නීතිරීති සහ සාධාරණ ගාස්තු ප්‍රතිපත්තියට එකඟ වෙමි.
+              </span>
+            </label>
+
+            <!-- Step 4 Actions -->
+            <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+              <button type="button" onclick="prevStep()"
+                class="px-5 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-xs transition flex items-center gap-1.5">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>ආපසු</span>
+              </button>
+              <button type="button" onclick="nextStep()"
+                class="btn-3d-orange px-8 py-3.5 rounded-2xl text-xs sm:text-sm font-black flex items-center gap-2">
+                <span>ඊළඟ පියවර: OTP තහවුරු කිරීම</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- ----------------------------------------------------------- -->
+          <!-- STEP 5: OTP VERIFICATION & COMPLETE -->
+          <!-- ----------------------------------------------------------- -->
+          <div id="step-panel-5" class="hidden space-y-6">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+                  <i class="fa-solid fa-key text-brandOrange-500"></i>
+                  <span>දුරකථන අංකය තහවුරු කරන්න (OTP Verification)</span>
+                </h3>
+                <span class="text-xs font-black text-brandOrange-500 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-400/30">Step 5 of 5</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">අවසාන පියවර: ඔබගේ ජංගම දුරකථනයට ලැබුණු SMS කේතය ඇතුළත් කරන්න.</p>
+            </div>
+
+            <!-- OTP Icon & Phone Display -->
+            <div class="text-center py-4 space-y-3">
+              <div class="w-16 h-16 rounded-3xl bg-amber-500/20 text-brandOrange-500 flex items-center justify-center text-3xl mx-auto border-2 border-brandOrange-500/40 shadow-inner">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+              </div>
+              <div>
+                <h4 class="text-base sm:text-lg font-black text-slate-900 dark:text-white">OTP කේතය ඇතුළත් කරන්න</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                  අපි ඔබගේ දුරකථන අංකය <strong id="otp-target-phone" class="text-slate-900 dark:text-white font-black">+94 77 123 4567</strong> වෙත SMS කේතයක් එවා ඇත.
+                </p>
+              </div>
+
+              <!-- 4 Digits Input -->
+              <div class="flex justify-center gap-3 py-3">
+                <input type="text" maxlength="1" id="otp-digit-1" oninput="handleOtpDigitInput(this, 1)" onkeydown="handleOtpDigitKey(event, 1)"
+                  class="otp-box bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 focus:outline-none" placeholder="•" autofocus>
+                <input type="text" maxlength="1" id="otp-digit-2" oninput="handleOtpDigitInput(this, 2)" onkeydown="handleOtpDigitKey(event, 2)"
+                  class="otp-box bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 focus:outline-none" placeholder="•">
+                <input type="text" maxlength="1" id="otp-digit-3" oninput="handleOtpDigitInput(this, 3)" onkeydown="handleOtpDigitKey(event, 3)"
+                  class="otp-box bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 focus:outline-none" placeholder="•">
+                <input type="text" maxlength="1" id="otp-digit-4" oninput="handleOtpDigitInput(this, 4)" onkeydown="handleOtpDigitKey(event, 4)"
+                  class="otp-box bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 focus:outline-none" placeholder="•">
+              </div>
+
+              <!-- Resend Timer -->
+              <div class="flex items-center justify-center gap-1.5 text-xs text-slate-500">
+                <span>කේතය නොලැබුණිද?</span>
+                <button type="button" id="btn-resend-otp" onclick="resendOtp()" class="text-brandOrange-500 font-bold hover:underline">
+                  නැවත එවන්න (Resend) <span id="otp-timer-display">(60s)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Complete Submission Button -->
+            <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+              <button type="button" onclick="prevStep()"
+                class="px-5 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-xs transition flex items-center gap-1.5">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>ආපසු</span>
+              </button>
+              <button type="button" onclick="submitRegistration()"
+                class="btn-3d-orange px-10 py-4 rounded-2xl text-xs sm:text-sm font-black flex items-center gap-2 shadow-2xl">
+                <span>ලියාපදිංචිය අවසන් කරන්න (Complete Registration)</span>
+                <i class="fa-solid fa-circle-check"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- RIGHT COLUMN: STICKY REAL-TIME BAAS CARD PREVIEW (30% WIDTH) -->
+        <!-- ============================================================= -->
+        <div id="side-preview-column" class="lg:col-span-4 sticky top-24 space-y-4">
+
+          <div class="flex items-center justify-between px-2">
+            <span class="text-xs font-black text-slate-900 dark:text-white flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+              <span>පාරිභෝගිකයින්ට පෙනෙන අයුරු (Live Preview):</span>
+            </span>
+            <span class="text-[10px] font-bold text-brandOrange-500 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-400/30">PRO CARD</span>
+          </div>
+
+          <!-- The Live Interactive Profile Card -->
+          <div class="glass-card-preview p-5 sm:p-6 rounded-[2rem] shadow-2xl space-y-4 relative transition-all duration-300">
+
+            <!-- Top Card Header: Status & Emergency Badge -->
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center gap-1.5 bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-black px-2.5 py-1 rounded-full border border-emerald-500/30">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>ONLINE NOW</span>
+              </span>
+
+              <span id="card-pro-emergency" class="hidden inline-flex items-center gap-1 bg-rose-500/20 text-rose-500 text-[10px] font-black px-2.5 py-1 rounded-full border border-rose-500/30">
+                <i class="fa-solid fa-truck-medical text-[9px]"></i> 24/7 හදිසි සේවා
+              </span>
+            </div>
+
+            <!-- Profile Image, Name & Trade -->
+            <div class="flex items-start gap-4">
+              <div class="relative shrink-0">
+                <img id="card-pro-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200"
+                  class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-2 border-brandOrange-500 shadow-md">
+                <span class="absolute -bottom-1.5 -right-1.5 bg-brandOrange-500 text-slate-950 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black shadow-md border-2 border-white dark:border-slate-900" title="Verified Baas">
+                  <i class="fa-solid fa-check"></i>
+                </span>
+              </div>
+
+              <div class="min-w-0 flex-1">
+                <h4 id="card-pro-name" class="text-base sm:text-lg font-black text-slate-900 dark:text-white truncate">
+                  කස්සප බණ්ඩාර
+                </h4>
+                <p id="card-pro-title" class="text-xs font-bold text-brandOrange-500 mt-0.5 truncate flex items-center gap-1.5">
+                  <i id="card-pro-icon" class="fa-solid fa-bolt text-brandOrange-500 text-[11px]"></i>
+                  <span>විදුලි කාර්මික ශිල්පී</span>
+                </p>
+                <div class="flex items-center gap-2 mt-1.5">
+                  <div class="flex items-center text-amber-400 text-xs">
+                    <i class="fa-solid fa-star"></i>
+                    <span class="ml-1 font-black text-slate-800 dark:text-slate-200">5.0</span>
+                  </div>
+                  <span class="text-slate-400 text-[11px]">•</span>
+                  <span id="card-pro-exp" class="text-[11px] font-bold text-slate-500 dark:text-slate-400">වසර 5-10 පළපුරුද්ද</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Location & Contact Info -->
+            <div class="space-y-2 pt-2 border-t border-slate-200 dark:border-slate-800 text-xs">
+              <div class="flex items-center justify-between text-slate-600 dark:text-slate-300">
+                <span class="flex items-center gap-1.5 font-bold">
+                  <i class="fa-solid fa-location-dot text-brandOrange-500 text-[11px]"></i> සේවා ප්‍රදේශය:
+                </span>
+                <span id="card-pro-location" class="font-black text-slate-900 dark:text-white truncate max-w-[170px] text-right">
+                  මහරගම, කොළඹ
+                </span>
+              </div>
+
+              <div class="flex items-center justify-between text-slate-600 dark:text-slate-300">
+                <span class="flex items-center gap-1.5 font-bold">
+                  <i class="fa-solid fa-tag text-brandOrange-500 text-[11px]"></i> ගාස්තු ඇස්තමේන්තුව:
+                </span>
+                <span id="card-pro-rate" class="font-black text-amber-600 dark:text-amber-400">
+                  සාකච්ඡා කර තීරණය කෙරේ
+                </span>
+              </div>
+            </div>
+
+            <!-- Simulated Customer Action Buttons -->
+            <div class="grid grid-cols-2 gap-2 pt-2">
+              <div class="py-2.5 px-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-black text-xs flex items-center justify-center gap-1.5 shadow-md">
+                <i class="fa-solid fa-phone text-emerald-400 dark:text-emerald-600"></i>
+                <span id="card-pro-phone-display">+94 77 123 4567</span>
+              </div>
+              <div class="py-2.5 px-3 rounded-xl bg-emerald-500 text-white font-black text-xs flex items-center justify-center gap-1.5 shadow-md">
+                <i class="fa-brands fa-whatsapp text-sm"></i>
+                <span>WhatsApp</span>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-center">
+              <p class="text-[10px] text-slate-600 dark:text-slate-400 font-medium">
+                🔒 ඔබේ දත්ත Baas.lk පද්ධතියේ ආරක්ෂිතව තැන්පත් වේ.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Help Box -->
+          <div class="glass-panel p-4 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-2">
+            <h5 class="text-xs font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+              <i class="fa-solid fa-headset text-brandOrange-500"></i>
+              <span>ලියාපදිංචි වීමේදී ගැටලුවක්ද?</span>
+            </h5>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">
+              අපගේ පාරිභෝගික සේවා කණ්ඩායම පැය 24 පුරාම ඔබට සහාය වීමට සූදානම්.
+            </p>
+            <a href="https://wa.me/94770000000" target="_blank"
+              class="inline-flex items-center gap-1.5 text-xs font-black text-emerald-600 dark:text-emerald-400 hover:underline pt-1">
+              <i class="fa-brands fa-whatsapp"></i> ක්ෂණික WhatsApp උපකාර ලබාගන්න
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ================================================================= -->
+  <!-- FOOTER -->
+  <!-- ================================================================= -->
+  <footer class="glass-panel border-t border-slate-200 dark:border-slate-800 py-8 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+      <div class="flex items-center gap-2">
+        <img src="log.png" alt="Baas.lk" class="h-6 w-auto">
+        <span class="font-bold">© 2026 Baas.lk - Sri Lanka's #1 Trusted Baas Network. All Rights Reserved.</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="index1.html" class="hover:text-brandOrange-500 font-bold transition">මුල් පිටුව (Home)</a>
+        <span>•</span>
+        <a href="index1.html#services-section" class="hover:text-brandOrange-500 font-bold transition">සේවාවන්</a>
+        <span>•</span>
+        <a href="index1.html#pro-section" class="hover:text-brandOrange-500 font-bold transition">බාස්ලාගේ ජාලය</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="bass.js"></script>
+</body>
+
+</html>
